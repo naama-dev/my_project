@@ -1,38 +1,46 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { useNow } from "react";
+import axios from "axios";
 
 const initVal = {
     task: [
-        { id: 0, name: "words", author: "yossi", price: 50 },
-        { id: 1, name: "kids", author: "lea", price: 45 },
-        { id: 2, name: "english", author: "naama", price: 30 },
-        { id: 3, name: "abc", author: "tamar", price: 60 },],
-    lastId: 3
+        { id: 1, name: "words", time: useNow, isComplete: false },
+        { id: 2, name: "english", time: useNow, isComplete: false },
+        { id: 3, name: "abc", time: useNow, isComplete: false },
+        { id: 4, name: "kids", time: useNow, isComplete: false },],
+    lastId: 5
 }
 
 const tasksSlice = createSlice({
     name: "tasks",
     initialState: initVal,
     reducers: {
-        addTask: (state, action) => {
-            const details = { id: state.lastId+1, name: action.payload, author: action.payload, price: state.lastId * 10 }
-            state.task = [...state.task, details]
-            state.lastId+=1
+        Task: (state, action) => {
+            const newTask = {
+                id: state.lastId,
+                name: action.payload,
+                time: useNow,
+                isComplete: false,
+            };
+            return {
+                state,
+                task: [...state.task, newTask],
+                lastId: (newTask.id) + 1,
+            }
         },
         deleteTask: (state, action) => {
+            console.log(action.payload);
             state.task = state.task.filter((item) => {
-                return item.id!=action.payload
+                return item.id != action.payload
             })
         },
         editTask: (state, action) => {
-            const x=state.task.find((item)=>{
-                return item.id==action.payload.id
+            state.task.map((item) => {
+                if (item.id === action.payload.id) {
+                    item.name = action.payload.name
+                    item.isComplete = action.payload.isComplete
+                }
             })
-            console.log(x.name);
-        //     deleteTask(x);
-            const name1="";
-           
-          state.task={...state.task,id:x.id,name:name1,author:name1,price:x.price}
-        console.log("edit"+action.payload.id);
         }
     }
 })
