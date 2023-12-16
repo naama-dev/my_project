@@ -9,6 +9,7 @@ import { cyan, teal,lime } from '@mui/material/colors';
 import Tab from '@mui/material/Tab';
 const LazyHome = React.lazy(()=>import('./Component/Home/HomeComp'));
 const LazyTasksComp = React.lazy(()=>import('./Component/ToDo/TasksComp'))
+const LazyPosts = React.lazy(()=>import('./Component/Post/PostComp'));
 function App() {
   const color = teal['500'];
   return (
@@ -37,6 +38,7 @@ function App() {
       <Routes>
         <Route path="/"  element={<Suspense fallback={<h1>loading..</h1>}><LazyHome/></Suspense>} />
         <Route path="/todo" element={<Suspense fallback={<h1>loading..</h1>}><LazyTasksComp/></Suspense>} />
+        <Route path="/post" element={<Suspense fallback={<h1>loading..</h1>}><LazyPosts/></Suspense>} />
       </Routes>
     </div>
   );
