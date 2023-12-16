@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { useNow } from "react";
-import axios from "axios";
 
 const initVal = {
     task: [
@@ -15,7 +14,7 @@ const tasksSlice = createSlice({
     name: "tasks",
     initialState: initVal,
     reducers: {
-        Task: (state, action) => {
+        addTask: (state, action) => {
             const newTask = {
                 id: state.lastId,
                 name: action.payload,
@@ -29,6 +28,7 @@ const tasksSlice = createSlice({
             }
         },
         deleteTask: (state, action) => {
+          
             console.log(action.payload);
             state.task = state.task.filter((item) => {
                 return item.id != action.payload
