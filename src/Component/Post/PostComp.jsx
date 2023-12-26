@@ -12,8 +12,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
-const PostComp = () => {
 
+const PostComp = () => {
     const myPosts = useSelector(x => x.postsSlice.post)
     console.log(myPosts);
     const dispatch = useDispatch()
@@ -25,7 +25,7 @@ const PostComp = () => {
     const handleClose = () => {
         setOpen(false);
     }
-    const saveTask=(text)=>{
+    const savePost=(text)=>{
         dispatch(addPost(text))
         handleClose()
     }
@@ -51,9 +51,10 @@ const PostComp = () => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => saveTask(text)} sx={{ color: teal['500'] }}>שמור</Button>
+                    <Button onClick={() => savePost(text)} sx={{ color: teal['500'] }}>שמור</Button>
                 </DialogActions>
             </Dialog>
+            <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-between'}}>
             {
                 myPosts.map((item)=>{
                     return(
@@ -61,6 +62,7 @@ const PostComp = () => {
                     )
                 })
             }
+            </div>
         </>
     )
 }

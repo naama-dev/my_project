@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { useNow } from "react";
 
+const d=new Date();
+const nowDate=d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
 const initVal = {
     task: [
-        { id: 1, name: "words", time: useNow, isComplete: false },
-        { id: 2, name: "english", time: useNow, isComplete: false },
-        { id: 3, name: "abc", time: useNow, isComplete: false },
-        { id: 4, name: "kids", time: useNow, isComplete: false },],
+        { id: 1, name: "words", time: nowDate, isComplete: false },
+        { id: 2, name: "english", time: nowDate, isComplete: false },
+        { id: 3, name: "abc", time: nowDate, isComplete: false },
+        { id: 4, name: "kids", time: nowDate, isComplete: false },],
     lastId: 5
 }
 
@@ -18,7 +19,7 @@ const tasksSlice = createSlice({
             const newTask = {
                 id: state.lastId,
                 name: action.payload,
-                time: useNow,
+                time: nowDate,
                 isComplete: false,
             };
             return {
