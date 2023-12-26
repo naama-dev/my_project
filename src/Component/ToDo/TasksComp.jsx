@@ -54,13 +54,19 @@ const TasksComp = () => {
                     <Button onClick={() => saveTask(text)} sx={{ color: teal['500'] }}>שמור</Button>
                 </DialogActions>
             </Dialog>
+            <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-between'}}>
             {
                 myTasks.map((item) => {
                     return (
+                        <>
+                        
                         <Task items={item} />
+                      
+                        </>
                     )
                 })
             }
+        </div>
         </>
     )
 }

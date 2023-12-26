@@ -27,7 +27,7 @@ const Task = (props) => {
     return (
         <>
             {!edit ?
-                <Card sx={{ maxWidth: 200, margin: 'auto', marginTop: '10px', background: teal['500'] }}>
+              <Card sx={{ width:'15%', margin: 'auto', marginTop: '10px', borderStyle: 'solid', borderColor: teal['500'] }}>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                             {props.items.name}
@@ -40,19 +40,19 @@ const Task = (props) => {
                         {...label}
                         defaultNotChecked
                         sx={{
-                            color: lime['50'],
+                            color: teal['500'],
                             '&.Mui-checked': {
-                                color: lime['50'],
+                                color: teal['500'],
                             },
                         }}
                         disabled
                     />
                     <CardActions >
-                        <Button size="xxlarge" onClick={() => { dispatch(deleteTask(props.items.id)) }}><DeleteForeverIcon size="xxlarge" sx={{ color: lime['50'] }} /></Button>
-                        <Button size="xxlarge" onClick={() => setEdit(true)}><Mode size="xxlarge" sx={{ color: lime['50'] }} /></Button>
+                        <Button size="xxlarge" onClick={() => { dispatch(deleteTask(props.items.id)) }}><DeleteForeverIcon size="xxlarge" sx={{ color: teal['500'] }} /></Button>
+                        <Button size="xxlarge" onClick={() => setEdit(true)}><Mode size="xxlarge" sx={{ color: teal['500'] }} /></Button>
                     </CardActions>
                 </Card>
-                : <Card sx={{ maxWidth: 200, margin: 'auto', marginTop: '10px', background: teal['500'] }}>
+                : <Card sx={{ width:'15%', margin: 'auto', marginTop: '10px', borderStyle: 'solid', borderColor: teal['500'] }}>
                     <CardContent>
                         <TextField id="outlined-basic"  variant="outlined"  defaultValue={props.items.name} onChange={(e) => setName(e.target.value)} />
                     </CardContent>
@@ -61,9 +61,9 @@ const Task = (props) => {
                             {...label}
                             defaultChecked
                             sx={{
-                                color: lime['50'],
+                                color: teal['500'],
                                 '&.Mui-checked': {
-                                    color: lime['50'],
+                                    color: teal['500'],
                                 },
                             }}
                             onClick={() => setIsComplete(!isComplete)}
@@ -72,16 +72,16 @@ const Task = (props) => {
                             {...label}
                             defaultNotChecked
                             sx={{
-                                color: lime['50'],
+                                color: teal['500'],
                                 '&.Mui-checked': {
-                                    color: lime['50'],
+                                    color: teal['500'],
                                 },
                             }}
                             onClick={() => setIsComplete(!isComplete)}
                         />
                     }
                     <CardActions >
-                        <Button size="xxlarge" onClick={()=>toEdit()} ><Send size="xxlarge" sx={{ color: lime['50'] }} /></Button>
+                        <Button size="xxlarge" onClick={()=>toEdit()} ><Send size="xxlarge" sx={{ color: teal['500'] }} /></Button>
                     </CardActions>
                 </Card>}
         </>

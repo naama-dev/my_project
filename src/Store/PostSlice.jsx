@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { useNow } from "react";
-
+const d=new Date();
+const nowDate=d.getFullYear+"/"+d.getMonth+"/"+d.getDate
 const initVal = {
     post: [
-        { id: 1, content: "words", time: useNow },
-        { id: 2, content: "english", time: useNow },
-        { id: 3, content: "abc", time: useNow },
-        { id: 4, content: "kids", time: useNow },],
+        { id: 1, content: "words", time: nowDate },
+        { id: 2, content: "english", time: nowDate },
+        { id: 3, content: "abc", time: nowDate },
+        { id: 4, content: "kids", time: nowDate },],
     lastId: 5
 }
 
@@ -15,10 +15,12 @@ const postsSlice = createSlice({
     initialState: initVal,
     reducers: {
         addPost: (state, action) => {
+            const d=new Date();
+            const nowDate=d.getFullYear+"/"+d.getMonth+"/"+d.getDate
             const newPost = {
                 id: state.lastId,
                 content: action.payload,
-                time: useNow,
+                time: nowDate,
             };
             return {
                 state,

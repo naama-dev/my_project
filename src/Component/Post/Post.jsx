@@ -25,13 +25,14 @@ const Post = (props) => {
     const [content, setContent] = useState(props.items.content)
     const toEdit = () => {
         setEdit(false)
-        setWords((content).slice(0,50))
+        setWords((content).slice(0, 50))
         dispatch(editPost({ id: props.items.id, content: content, time: props.items.time }))
     }
     return (
         <>
             {!edit ?
-                <Card sx={{ maxWidth: 300, margin: 'auto', marginTop: '10px', borderStyle: 'solid', borderColor: teal['500'] }}>
+                <Card sx={{ width: '15%', margin: 'auto', marginTop: '10px', borderStyle: 'solid', borderColor: teal['500'] }}>
+
                     {!readMore ?
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
@@ -48,15 +49,16 @@ const Post = (props) => {
                         </CardContent>
                     }
                     <CardActions >
-                        <Button size="xxlarge" onClick={() => {dispatch(deletePost(props.items.id))}}><DeleteForeverIcon size="xxlarge" sx={{ color: teal['500'] }} /></Button>
+                        <Button size="xxlarge" onClick={() => { dispatch(deletePost(props.items.id)) }}><DeleteForeverIcon size="xxlarge" sx={{ color: teal['500'] }} /></Button>
                         <Button size="xxlarge" onClick={() => setEdit(true)}><Mode size="xxlarge" sx={{ color: teal['500'] }} /></Button>
+                        {cntLike <= 0 ?
+                            <Button size="xxlarge" onClick={() => setCntLike(cntLike + 1)} ><FavoriteBorder size="xxlarge" sx={{ color: grey['800'] }} /><div>{cntLike}</div></Button>
+                            : <Button size="xxlarge" onClick={() => setCntLike(cntLike + 1)} ><Favorite size="xxlarge" sx={{ color: teal['500'] }} /><div>{cntLike}</div></Button>
+                        }
                     </CardActions>
-                    {cntLike <= 0 ?
-                        <Button size="xxlarge" onClick={() => setCntLike(cntLike + 1)} ><FavoriteBorder size="xxlarge" sx={{ color: grey['800'] }} /><div>{cntLike}</div></Button>
-                        : <Button size="xxlarge" onClick={() => setCntLike(cntLike + 1)} ><Favorite size="xxlarge" sx={{ color: teal['500'] }} /><div>{cntLike}</div></Button>
-                    }
+
                 </Card>
-                : <Card sx={{ maxWidth: 300, margin: 'auto', marginTop: '10px', borderStyle: 'solid', borderColor: teal['500'] }}>
+                : <Card sx={{ width: '15%', margin: 'auto', marginTop: '10px', borderStyle: 'solid', borderColor: teal['500'] }}>
                     <CardContent>
                         <TextField id="outlined-basic" variant="outlined" defaultValue={props.items.content} onChange={(e) => setContent(e.target.value)} />
                     </CardContent>
