@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Add from '@mui/icons-material/Add';
 import { useSelector, useDispatch } from 'react-redux';
 import { addPost } from "../../Store/PostSlice";
-import { pink, lime, teal } from '@mui/material/colors';
+import { teal } from '@mui/material/colors';
 import BubbleChart from '@mui/icons-material/BubbleChart';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';

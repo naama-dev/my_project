@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { Routes, Route, Link } from 'react-router-dom';
-import { cyan, teal,lime } from '@mui/material/colors';
+import { teal,lime } from '@mui/material/colors';
 import Tab from '@mui/material/Tab';
 const LazyHome = React.lazy(()=>import('./Component/Home/HomeComp'));
 const LazyTasksComp = React.lazy(()=>import('./Component/ToDo/TasksComp'))
