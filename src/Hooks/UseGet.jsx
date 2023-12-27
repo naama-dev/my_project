@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from 'axios'
 
-const UseGet = () => {
+const useGet = () => {
     const [result, setResult] = useState([])
     const get = async (url) => {
         try {
@@ -15,4 +15,4 @@ const UseGet = () => {
     return {get, result}
 }
 
-export default UseGet
+export default useGet
