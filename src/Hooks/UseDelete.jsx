@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from 'axios'
 
-const UseDelete = () => {
+const useDelete = () => {
     const [result, setResult] = useState([])
     const deleteData= async (url) => {
         try {
@@ -15,4 +15,4 @@ const UseDelete = () => {
     return {deleteData, result}
 }
 
-export default UseDelete
+export default useDelete
