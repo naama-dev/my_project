@@ -11,6 +11,7 @@ const LazyHome = React.lazy(()=>import('./Component/Home/HomeComp'));
 const LazyTasksComp = React.lazy(()=>import('./Component/ToDo/TasksComp'))
 const LazyPosts = React.lazy(()=>import('./Component/Post/PostComp'));
 const LazyUsers=React.lazy(()=>import('./Component/User/UsersComp'));
+const LazyPhoto=React.lazy(()=>import('./Component/Photo/PhotoComp'))
 function App() {
   const color = teal['500'];
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/"  element={<Suspense fallback={<h1>loading..</h1>}><LazyHome/></Suspense>} />
         <Route path="/todo" element={<Suspense fallback={<h1>loading..</h1>}><LazyTasksComp/></Suspense>} />
         <Route path="/post" element={<Suspense fallback={<h1>loading..</h1>}><LazyPosts/></Suspense>} />
+        <Route path="/photo" element={<Suspense fallback={<h1>loading..</h1>}><LazyPhoto/></Suspense>} />
         <Route path="/users" element={<Suspense fallback={<h1>loading..</h1>}><LazyUsers/></Suspense>} />
       </Routes>
     </div>

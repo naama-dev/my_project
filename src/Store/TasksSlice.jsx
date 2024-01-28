@@ -47,3 +47,20 @@ const tasksSlice = createSlice({
 })
 export const { addTask, deleteTask, editTask } = tasksSlice.actions
 export default tasksSlice.reducer
+// const TodoSlice = createSlice({
+//     name: "arr",
+//     initialState: todoArr,
+//     reducers: {
+//         todoGet: (state, actions) => {
+//             const [httpGet, res] = UseGet()
+//             httpGet('https://localhost:7007/api/Todo')
+//             state.arr = res
+//         },
+//         todoPost: (state, actions) => {
+//             const httpPost = UsePost()
+//             // const d = new Date()
+//             // const nowDate = d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()
+//             // const todo = {id: ++state.id, description: actions.payload, date: nowDate, isComplete: false}
+//             // state.arr = [...state.arr, todo]
+//             httpPost('https://localhost:7007/api/Todo', actions.payload)
+        
