@@ -18,11 +18,11 @@ const Task = (props) => {
     const dispatch = useDispatch()
     const [edit, setEdit] = useState(false)
     const [isComplete, setIsComplete] = useState(props.items.isComplete)
-    const [time, setTime] = useState(props.items.time)
+    const [time, setTime] = useState(props.items.createDate)
     const [name, setName] = useState(props.items.name)
     const toEdit = () => {
         setEdit(false)
-        dispatch(editTask({id: props.items.id, name: name, time: time, isComplete: isComplete}))
+        dispatch(editTask({id: props.items.id, name: name, createDate: time, isComplete: isComplete}))
     }
     return (
         <>
@@ -33,7 +33,7 @@ const Task = (props) => {
                             {props.items.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            {props.items.time}
+                            {props.items.createDate}
                         </Typography>
                     </CardContent>
                     <Checkbox

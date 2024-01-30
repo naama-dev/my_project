@@ -1,18 +1,22 @@
-import { useState } from "react";
+
 import axios from 'axios'
 
-const useDelete = () => {
-    const [result, setResult] = useState([])
+const UseDelete = () => {
+  
     const deleteData= async (url) => {
         try {
-            const response = await axios.delete(url)
-            setResult(response.data)
+       await axios.delete(url)
+      
         } catch (error) {
             console.error(error)
         }
     }
 
-    return {deleteData, result}
+    return deleteData
 }
 
-export default useDelete
+export default UseDelete
+
+
+
+
