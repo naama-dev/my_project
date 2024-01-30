@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { addTask} from "../../Store/TasksSlice";
+import {getTasks, addTask} from "../../Store/TasksSlice";
 import Task from "./Task";
 import Button from '@mui/material/Button';
 import { teal } from '@mui/material/colors';
@@ -12,9 +12,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
-import useGet from '../../Hooks/UseGet'
+import UseGet from '../../Hooks/UseGet'
 const TasksComp = () => {
-
+    const dispatch = useDispatch();
+    dispatch(getTasks())
     const [open, setOpen] = useState(false);
     const [text, setText] = useState("")
     const handleClickOpen = () => {
@@ -27,12 +28,11 @@ const TasksComp = () => {
         dispatch(addTask(text))
         handleClose()
     }
-    const{get,result}=useGet()
     const myTasks = useSelector(x => x.tasksSlice.task)
-    const dispatch = useDispatch()
     return (
         <>
             <h1>My Tasks</h1>
+            
             <Button variant="outlined" sx={{ color: teal['500'] }} color='inherit' onClick={() => handleClickOpen()} >
                 הוספת משימה חדשה
                 {<Add />}
@@ -60,9 +60,7 @@ const TasksComp = () => {
                 myTasks.map((item) => {
                     return (
                         <>
-                        
                         <Task items={item} />
-                      
                         </>
                     )
                 })
