@@ -24,15 +24,17 @@ const TasksComp = () => {
     const handleClose = () => {
         setOpen(false);
     }
+    
+    const myTasks = useSelector(x => x.tasksSlice.task)
     const saveTask=(text)=>{
-        dispatch(addTask(text))
+        debugger
+        dispatch(addTask({name:text,isComplete:false,createDate:myTasks[0].createDate}))
         handleClose()
     }
-    const myTasks = useSelector(x => x.tasksSlice.task)
+
     return (
         <>
             <h1>My Tasks</h1>
-            
             <Button variant="outlined" sx={{ color: teal['500'] }} color='inherit' onClick={() => handleClickOpen()} >
                 הוספת משימה חדשה
                 {<Add />}

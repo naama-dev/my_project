@@ -1,53 +1,33 @@
 import { createSlice } from '@reduxjs/toolkit'
-
+import UseGet from '../Hooks/UseGet';
+import UsePut from '../Hooks/UsePut';
+import UseDelete from '../Hooks/UseDelete';
+import UsePost from '../Hooks/UsePost';
 const initVal = {
-    users: [
-        { id: 1, name: "words",  address:"ritva",  email: "c0987@gmail.com", phone:"05552228888" },
-        { id: 2, name: "english",address:"ezra",   email: "c0987@gmail.com", phone:"05552228888" },
-        { id: 3, name: "abc",    address:"hapisga",email: "c0987@gmail.com", phone:"05552228888" },
-        { id: 4, name: "kids",   address:"rashi",  email: "c0987@gmail.com", phone:"05552228888" },],
-    lastId: 5
+    users: []
 }
-
 const usersSlice = createSlice({
     name: "users",
     initialState: initVal,
     reducers: {
+        getUsers:(state,action)=>{
+            const[get,res]=UseGet()
+            get('https://localhost:44316/userget')
+            state.users=res;
+        },
         addUser: (state, action) => {
-            
-            const newUser= {
-                id: state.lastId,
-                name: action.payload.name,
-                address:action.payload.address,
-                email:action.payload.email,
-                phone:action.payload.phone,
-            };
-            console.log(state.users);
-            return {
-                state,
-                users: [...state.users, newUser],
-                lastId: (newUser.id) + 1,
-            }
+            const post=UsePost()
+            post('https://localhost:44316/userpost',action.payload)
         },
         deleteUser: (state, action) => {
-            console.log(action.payload);
-            state.users = state.users.filter((item) => {
-                return item.id != action.payload
-            })
-            console.log(state.users);
+            const deleteData=UseDelete()
+            deleteData('https://localhost:44316/userdelete'+action.payload)
         },
         editUser: (state, action) => {
-            state.users.map((item) => {
-                if (item.id === action.payload.id) {
-                    item.name = action.payload.name
-                    item.name=action.payload.name
-                    item.address=action.payload.address
-                    item.email=action.payload.email
-                    item.phone=action.payload.phone
-                }
-            })
+           const put=UsePut()
+           put('https://localhost:44316/userput'+action.payload.id,action.payload)
         }
     }
 })
-export const { addUser, deleteUser, editUser } = usersSlice.actions
+export const {getUsers, addUser, deleteUser, editUser } = usersSlice.actions
 export default usersSlice.reducer

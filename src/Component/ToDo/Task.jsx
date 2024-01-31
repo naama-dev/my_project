@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { deleteTask, editTask } from "../../Store/TasksSlice";
+import { deleteTask, editTask,taskCompletePut } from "../../Store/TasksSlice";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Card from '@mui/material/Card';
@@ -23,6 +23,10 @@ const Task = (props) => {
     const toEdit = () => {
         setEdit(false)
         dispatch(editTask({id: props.items.id, name: name, createDate: time, isComplete: isComplete}))
+    }
+    const complete=(id)=>{
+        setIsComplete(!isComplete)
+        dispatch(taskCompletePut(id))
     }
     return (
         <>
@@ -66,7 +70,7 @@ const Task = (props) => {
                                     color: teal['500'],
                                 },
                             }}
-                            onClick={() => setIsComplete(!isComplete)}
+                            onClick={() => complete(props.items.id)}
                         />
                         : <Checkbox
                             {...label}
@@ -77,7 +81,7 @@ const Task = (props) => {
                                     color: teal['500'],
                                 },
                             }}
-                            onClick={() => setIsComplete(!isComplete)}
+                            onClick={() => complete(props.items.id)}
                         />
                     }
                     <CardActions >
