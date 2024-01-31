@@ -3,7 +3,7 @@ import Post from "./Post";
 import Button from '@mui/material/Button';
 import Add from '@mui/icons-material/Add';
 import { useSelector, useDispatch } from 'react-redux';
-import { addPost } from "../../Store/PostSlice";
+import {getPost, addPost } from "../../Store/PostSlice";
 import { teal } from '@mui/material/colors';
 import BubbleChart from '@mui/icons-material/BubbleChart';
 import Dialog from '@mui/material/Dialog';
@@ -14,9 +14,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 
 const PostComp = () => {
-    const myPosts = useSelector(x => x.postsSlice.post)
-    console.log(myPosts);
     const dispatch = useDispatch()
+    dispatch(getPost())
+    const myPosts = useSelector(x => x.postsSlice.post)
     const [open, setOpen] = useState(false);
     const [text, setText] = useState("")
     const handleClickOpen = () => {
@@ -26,7 +26,7 @@ const PostComp = () => {
         setOpen(false);
     }
     const savePost=(text)=>{
-        dispatch(addPost(text))
+        dispatch(addPost({contect:text,like:false}))
         handleClose()
     }
     return (

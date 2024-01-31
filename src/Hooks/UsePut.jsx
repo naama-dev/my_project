@@ -14,7 +14,3 @@ const UsePut = () => {
 }
 
 export default UsePut
-
-
-
-

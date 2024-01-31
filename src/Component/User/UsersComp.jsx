@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { addUser } from "../../Store/UserSlice";
+import {getUsers, addUser } from "../../Store/UserSlice";
 import User from "./User";
 import Button from '@mui/material/Button';
 import { teal } from '@mui/material/colors';
@@ -14,8 +14,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 
 const UsersComp = () => {
-    const users = useSelector(x => x.usersSlice.users)
+    
     const dispatch = useDispatch();
+    dispatch(getUsers())
+    const users = useSelector(x => x.usersSlice.users)
     const [open, setOpen] = useState(false);
     const [text, setText] = useState("");
     const [address, setAddress] = useState("");
@@ -28,7 +30,7 @@ const UsersComp = () => {
         setOpen(false);
     }
     const saveTask = () => {
-        console.log("text");
+        
         dispatch(addUser({name:text,address:address,email:email,phone:phone}));
         handleClose()
     }

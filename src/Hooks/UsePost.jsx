@@ -1,18 +1,15 @@
-import { useState } from "react";
+
 import axios from 'axios'
 
 const UsePost = () => {
-    const [result, setResult] = useState([])
     const post = async (url,data) => {
         try {
-            const response = await axios.post(url,data)
-            setResult(response.data)
+            debugger
+            await axios.post(url,data)
         } catch (error) {
-            console.error(error)
+           console.log("error");
         }
     }
-
-    return {post, result}
+    return post
 }
-
 export default UsePost

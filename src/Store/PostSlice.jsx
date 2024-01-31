@@ -1,48 +1,40 @@
 import { createSlice } from '@reduxjs/toolkit'
-const d=new Date();
-const nowDate=d.getFullYear+"/"+d.getMonth+"/"+d.getDate
+import UseGet from '../Hooks/UseGet';
+import UsePut from '../Hooks/UsePut';
+import UseDelete from '../Hooks/UseDelete';
+import UsePost from '../Hooks/UsePost';
+
 const initVal = {
-    post: [
-        { id: 1, content: "words", time: nowDate },
-        { id: 2, content: "english", time: nowDate },
-        { id: 3, content: "abc", time: nowDate },
-        { id: 4, content: "kids", time: nowDate },],
-    lastId: 5
+    post: []
 }
 
 const postsSlice = createSlice({
     name: "posts",
     initialState: initVal,
     reducers: {
+        getPost:(state,action)=>{
+            const[get,res]=UseGet()
+            get('https://localhost:44316/postget')
+            state.post = res;
+        },
         addPost: (state, action) => {
-            const d=new Date();
-            const nowDate=d.getFullYear+"/"+d.getMonth+"/"+d.getDate
-            const newPost = {
-                id: state.lastId,
-                content: action.payload,
-                time: nowDate,
-            };
-            return {
-                state,
-                post: [...state.post, newPost],
-                lastId: (newPost.id) + 1,
-            }
+            const post=UsePost()
+            post('https://localhost:44316/post-post',action.payload)
         },
         deletePost: (state, action) => {
-            state.post = state.post.filter((item) =>{
-                return item.id != action.payload
-            })
-        //    state.post= state.post.filter((post) => post.id !== action.payload);
-        console.log(state.post);
+          debugger
+          const deleteData=UseDelete()
+          deleteData('https://localhost:44316/post-delete'+action.payload)
         },
         editPost: (state, action) => {
-            state.post.map((item) => {
-                if (item.id === action.payload.id) {
-                    item.content = action.payload.content
-                }
-            })
+            const put=UsePut()
+            put('https://localhost:44316/post-put'+action.payload.id,action.payload)
+        },
+        postLike:(state,action)=>{
+            const put=UsePut()
+            put('https://localhost:44316/post-put-Like'+action.payload,action.payload)
         }
     }
 })
-export const { addPost, deletePost, editPost } = postsSlice.actions
+export const { getPost,addPost, deletePost, editPost,postLike } = postsSlice.actions
 export default postsSlice.reducer
