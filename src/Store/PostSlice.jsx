@@ -32,7 +32,7 @@ const postsSlice = createSlice({
         },
         postLike:(state,action)=>{
             const put=UsePut()
-            put('https://localhost:44316/post-put-Like'+action.payload,action.payload)
+            put('https://localhost:44316/post-put-Like'+action.payload)
         }
     }
 })

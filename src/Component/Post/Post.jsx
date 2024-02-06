@@ -30,7 +30,7 @@ const Post = (props) => {
     }
     const editLike=(id)=>{
         setCntLike(cntLike + 1)
-        dispatch(postLike(id))
+        dispatch(postLike({id:id}))
     }
     return (
         <>
