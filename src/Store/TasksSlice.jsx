@@ -16,7 +16,6 @@ const tasksSlice = createSlice({
             const[get,res]=UseGet()
             get('https://localhost:44316/todoget')
             state.task = res;
-
         },
         addTask: (state, action) => {
             debugger
@@ -29,12 +28,13 @@ const tasksSlice = createSlice({
             deleteData('https://localhost:44316/tododelete'+action.payload)
         },
         editTask: (state, action) => {
-         
+         debugger
          const httpput=UsePut()
          httpput('https://localhost:44316/todoput'+action.payload.id,action.payload)
 
         },
         taskCompletePut: (state, actions) => {
+                debugger
                 const httpPut = UsePut()
                 httpPut('https://localhost:44316//todoputiscomplete'+actions.payload,actions.payload)
         }

@@ -3,9 +3,11 @@ import UseGet from '../Hooks/UseGet';
 import UsePut from '../Hooks/UsePut';
 import UseDelete from '../Hooks/UseDelete';
 import UsePost from '../Hooks/UsePost';
+
 const initVal = {
     users: []
 }
+
 const usersSlice = createSlice({
     name: "users",
     initialState: initVal,
@@ -24,6 +26,7 @@ const usersSlice = createSlice({
             deleteData('https://localhost:44316/userdelete'+action.payload)
         },
         editUser: (state, action) => {
+            debugger
            const put=UsePut()
            put('https://localhost:44316/userput'+action.payload.id,action.payload)
         }

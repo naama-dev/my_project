@@ -21,6 +21,7 @@ const Task = (props) => {
     const [time, setTime] = useState(props.items.createDate)
     const [name, setName] = useState(props.items.name)
     const toEdit = () => {
+        debugger
         setEdit(false)
         dispatch(editTask({id: props.items.id, name: name, createDate: time, isComplete: isComplete}))
     }
@@ -60,9 +61,9 @@ const Task = (props) => {
                     <CardContent>
                         <TextField id="outlined-basic"  variant="outlined"  defaultValue={props.items.name} onChange={(e) => setName(e.target.value)} />
                     </CardContent>
-                    {props.items.isComplete ?
+                    {isComplete ?
                         <Checkbox
-                            {...label}
+                       
                             defaultChecked
                             sx={{
                                 color: teal['500'],
@@ -73,11 +74,10 @@ const Task = (props) => {
                             onClick={() => complete(props.items.id)}
                         />
                         : <Checkbox
-                            {...label}
-                            defaultNotChecked
+                            
                             sx={{
                                 color: teal['500'],
-                                '&.Mui-checked': {
+                                '&.Mui-Notchecked': {
                                     color: teal['500'],
                                 },
                             }}

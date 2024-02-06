@@ -23,6 +23,7 @@ const User = (props) => {
     const [email, setEmail] = useState(props.items.email)
     const [phone, setPhone] = useState(props.items.phone)
     const toEdit = () => {
+        debugger
         setEdit(false)
         dispatch(editUser({ id: props.items.id, name: name, address: address, email: email, phone: phone }))
     }
